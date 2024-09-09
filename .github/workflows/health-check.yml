@@ -10,9 +10,13 @@ on:
 
 jobs:
   health-check:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
+    - name: Ghaction permission monitor
+      uses: GitHubSecurityLab/actions-permissions/monitor@v1
+      with:
+        config: '{ "create_artifact": true, "enabled": true, "debug": true }'
     - name: Check application health
       id: healthCheck
       uses: fjogeleit/http-request-action@v1.8.0
